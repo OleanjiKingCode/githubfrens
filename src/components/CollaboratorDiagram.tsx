@@ -30,28 +30,28 @@ const CollaboratorDiagram: React.FC<CollaboratorDiagramProps> = ({ owner, collab
       )
     );
 
-    const link = svg
-      .selectAll(".link")
-      .data(nodes.descendants().slice(1))
-      .enter()
-      .append("path")
-      .attr("class", "link")
-      .attr("d", (d) => {
-        const startPoint = [d.parent!.x, d.parent!.y];
-        const endPoint = [d.x, d.y];
-        const midPoint = [(startPoint[0] + endPoint[0]) / 2, startPoint[1]];
-        const curveLength = Math.abs(
-          (new Date(d.data.collaborationDate).getTime() - new Date().getTime()) /
-            (1000 * 60 * 60 * 24 * 30)
-        ); // Adjust the curve length based on the collaboration date
-        return `M${startPoint[0]},${startPoint[1]}C${midPoint[0]},${
-          midPoint[1] + curveLength
-        } ${midPoint[0]},${endPoint[1] - curveLength} ${endPoint[0]},${
-          endPoint[1]
-        }`;
-      })
-      .attr("stroke", "gray")
-      .attr("fill", "none");
+    // const link = svg
+    //   .selectAll(".link")
+    //   .data(nodes.descendants().slice(1))
+    //   .enter()
+    //   .append("path")
+    //   .attr("class", "link")
+    //   .attr("d", (d) => {
+    //     const startPoint = [d.parent!.x, d.parent!.y];
+    //     const endPoint = [d.x, d.y];
+    //     const midPoint = [(startPoint[0] + endPoint[0]) / 2, startPoint[1]];
+    //     const curveLength = Math.abs(
+    //       (new Date(d.data.collaborationDate).getTime() - new Date().getTime()) /
+    //         (1000 * 60 * 60 * 24 * 30)
+    //     ); // Adjust the curve length based on the collaboration date
+    //     return `M${startPoint[0]},${startPoint[1]}C${midPoint[0]},${
+    //       midPoint[1] + curveLength
+    //     } ${midPoint[0]},${endPoint[1] - curveLength} ${endPoint[0]},${
+    //       endPoint[1]
+    //     }`;
+    //   })
+    //   .attr("stroke", "gray")
+    //   .attr("fill", "none");
 
     const node = svg
       .selectAll(".node")
