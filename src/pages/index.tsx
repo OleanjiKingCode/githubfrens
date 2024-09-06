@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import CollaboratorDiagram from "../components/CollaboratorDiagram";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { Octokit } from "@octokit/rest";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,43 +18,64 @@ export default function Home() {
   const [collaborators, setCollaborators] = useState([]);
 
   useEffect(() => {
-    console.log(session);
-  }, [session]);
-
-  useEffect(() => {
     const fetchCollaborators = async () => {
       if (!session) return;
 
       console.log(session);
 
-      // const octokit = new Octokit({ auth: session.accessToken });
+      const octokit = new Octokit({ auth: session.accessToken ?? "" });
 
-      // const { data: repos } = await octokit.repos.listForAuthenticatedUser({
-      //   visibility: "all",
-      //   affiliation: "owner,collaborator",
-      // });
+      let repos: Octokit.ReposListForAuthenticatedUserResponseItem[] = [];
+      for (let page = 1; page <= 40; page++) {
+        const { data } = await octokit.repos.listForAuthenticatedUser({
+          visibility: "all",
+          affiliation: "owner,collaborator,organization_member",
+          sort: "pushed",
+          per_page: 100,
+          page,
+        });
+        repos = repos.concat(data);
+      }
 
-      // const collaboratorsData = await Promise.all(
-      //   repos.map(async (repo) => {
-      //     const { data: collaborators } = await octokit.repos.listCollaborators({
-      //       owner: repo.owner.login,
-      //       repo: repo.name,
-      //     });
+      let filteredRepos = repos.filter((i) => i.permissions?.push === true);
 
-      //     return collaborators.map((collaborator) => ({
-      //       name: collaborator.login,
-      //       repo: repo.name,
-      //       collaborationDate: new Date(repo.created_at),
-      //     }));
-      //   })
-      // );
+      const collaboratorsData = await Promise.all(
+        filteredRepos.map(async (repo) => {
+          const { data: contributorsData } =
+            await octokit.repos.listContributors({
+              owner: repo.owner.login,
+              repo: repo.name,
+            });
 
-      // setCollaborators(collaboratorsData.flat());
+          const contributors = Object.values(contributorsData);
+          let allContributors = [];
+          if (contributors.length > 1) {
+            allContributors.push({
+              repo: {
+                name: repo.name,
+                description: repo.description,
+                url: repo.html_url,
+              },
+              contributors: contributors.map((c) => ({
+                login: c.login,
+                avatarUrl: c.avatar_url,
+                url: c.html_url,
+              })),
+              pushedAt: repo.pushed_at,
+            });
+          }
+          return allContributors;
+        })
+      );
+
+      const filteredCollaboratorsData = collaboratorsData.filter(
+        (i) => i.length > 0
+      );
+      console.log(filteredCollaboratorsData);
     };
 
     fetchCollaborators();
   }, [session]);
-
   return (
     <div className="container mx-auto">
       {!session ? (
