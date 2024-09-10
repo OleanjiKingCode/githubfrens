@@ -16,3 +16,27 @@ export type GitAvatarNode = Node<
 >;
 
 export type AppNode = BuiltInNode | PositionLoggerNode | GitAvatarNode;
+
+export interface AuthenticatedUser {
+  name: string;
+  bio: string;
+  avatar_url: string;
+  projects: number;
+  gitfrens: number;
+}
+
+export interface Contributors {
+  repo: {
+    name: string;
+    description: string;
+    url: string;
+  };
+  contributors: {
+    login: string;
+    alias: string;
+    avatarUrl: string;
+    url: string;
+  };
+  pushedAt: string;
+  daysAgo: number;
+}
