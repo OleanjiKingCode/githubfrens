@@ -1,22 +1,5 @@
 import type { Node, BuiltInNode } from "@xyflow/react";
 
-export type PositionLoggerNode = Node<
-  { label: string; fixedY: number },
-  "position-logger"
->;
-export type GitAvatarNode = Node<
-  {
-    label: string;
-    fixedY: number;
-    url: string;
-    friendsCount: number;
-    projectsCount: number;
-  },
-  "git-avatar"
->;
-
-export type AppNode = BuiltInNode | PositionLoggerNode | GitAvatarNode;
-
 export interface AuthenticatedUser {
   name: string;
   bio: string;
@@ -36,7 +19,29 @@ export interface Contributors {
     alias: string;
     avatarUrl: string;
     url: string;
-  };
+  }[];
   pushedAt: string;
   daysAgo: number;
 }
+
+export type PositionLoggerNode = Node<
+  {
+    label: string;
+    fixedY: number;
+    constributors: Contributors;
+  },
+  "position-logger"
+>;
+export type GitAvatarNode = Node<
+  {
+    label: string;
+    fixedY: number;
+    url: string;
+    bio: string;
+    friendsCount: number;
+    projectsCount: number;
+  },
+  "git-avatar"
+>;
+
+export type AppNode = BuiltInNode | PositionLoggerNode | GitAvatarNode;

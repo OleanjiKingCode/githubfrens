@@ -22,9 +22,6 @@ import {
 
 export default function Home() {
   const { data: session } = useSession();
-  const [collaborators, setCollaborators] = useState<Contributors[]>([]);
-  const [authenticatedUser, setAuthenticatedUser] =
-    useState<AuthenticatedUser>();
 
   const [allNodes, setAllNodes] = useState<AppNode[]>([]);
 
@@ -95,14 +92,6 @@ export default function Home() {
         (count, data) => count + data.contributors.length,
         0
       );
-      setAuthenticatedUser({
-        name: user.login,
-        bio: user.bio ?? "",
-        avatar_url: user.avatar_url,
-        projects: filteredCollaboratorsData.length,
-        gitfrens: totalCollaborators,
-      });
-      setCollaborators(filteredCollaboratorsData);
 
       const result = getNodes({
         user: {
@@ -122,8 +111,6 @@ export default function Home() {
     fetchCollaborators();
   }, [session]);
 
-  // const [nodes, setNodes] = useState(allNodes);
-  // console.log(nodes, allNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect: OnConnect = useCallback(
     (connection) => setEdges((edges) => addEdge(connection, edges)),
@@ -141,7 +128,6 @@ export default function Home() {
               change.position = { x: change.position.x, y: fixedY };
             }
           }
-
           return change;
         });
 
