@@ -26,7 +26,7 @@ export const Frens = ({
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center py-10 backdrop-blur-lg rounded-lg shadow-xl">
-      <div className="w-full flex flex-wrap justify-between items-center px:3 md:px-5">
+      <div className="w-full flex flex-wrap justify-between items-center px-3 md:px-5">
         <div className="hidden md:block"></div>
         <div className="flex items-center gap-2 text-lg md:text-2xl font-bold text-center">
           <FaGithub className="w-6 h-6 md:w-10 md:h-10" />

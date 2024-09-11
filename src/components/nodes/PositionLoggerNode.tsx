@@ -22,9 +22,13 @@ export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
       />
       <div className="w-fit  shadow-lg text-black">
         <div className="border  py-1 px-2 bg-[#fdfdfd] rounded-t-lg">
-          <h3 className="text-xs font-semibold">
+          <Link
+            className="text-xs font-semibold"
+            href={data.constributors.repo.url}
+            target="_blank"
+          >
             {data.constributors.repo.name}
-          </h3>
+          </Link>
         </div>
 
         <div className="flex -space-x-3 border  rtl:space-x-reverse py-1 px-2 bg-white rounded-b-lg">
