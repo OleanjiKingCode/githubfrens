@@ -1,27 +1,18 @@
-import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Octokit } from "@octokit/rest";
 import {
-  addEdge,
   applyEdgeChanges,
   applyNodeChanges,
   Edge,
-  OnConnect,
   OnEdgesChange,
   ReactFlow,
-  useEdgesState,
-  useNodesState,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { getNodes, nodeTypes } from "@/components/nodes";
 import { edgeTypes, initialEdges } from "@/components/edges";
-import {
-  Contributors,
-  AuthenticatedUser,
-  AppNode,
-} from "@/components/nodes/types";
+import { AppNode } from "@/components/nodes/types";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -55,8 +46,8 @@ export default function Home() {
 
   const fetchCollaborators = async () => {
     if (!session) return;
-
-    const octokit = new Octokit({ auth: session.accessToken ?? "" });
+    let currentSession: any = session;
+    const octokit = new Octokit({ auth: currentSession.accessToken ?? "" });
 
     const { data: user } = await octokit.users.getAuthenticated();
 
