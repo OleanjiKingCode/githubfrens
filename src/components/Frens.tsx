@@ -23,7 +23,7 @@ export const Frens = ({
         <div className="hidden md:block"></div>
         <div className="flex items-center gap-2 text-lg md:text-2xl font-bold text-center">
           <FaGithub className=" w-6 h-6  md:w-10 md:h-10" />
-          <span>Meet Your Git Frens</span>
+          <span>Git Frens</span>
         </div>
         <button
           className="bg-gray-800 text-white px-4 py-2 rounded"

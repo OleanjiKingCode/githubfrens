@@ -8,7 +8,7 @@ export const SignIn = ({ definition }: { definition: string }) => {
       <div className="flex flex-col items-center gap-4">
         <div className="flex items-center gap-3 text-lg  md:text-3xl font-bold text-center">
           <FaGithub className="w-10 h-10" />
-          <span>Meet Your Git Frens</span>
+          <span>Git Frens</span>
         </div>
         <span className="text-base md:text-lg text-center">{definition}</span>
       </div>
