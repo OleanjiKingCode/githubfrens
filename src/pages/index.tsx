@@ -14,7 +14,7 @@ import { initialEdges } from "@/components/edges";
 import { AppNode } from "@/components/nodes/types";
 import { gitfrenDefinitions, loadingMessages } from "@/utils/descriptionData";
 import { SignIn } from "@/components/SignIn";
-import { Frens } from "@/components/frens";
+import { Frens } from "@/components/Frens";
 
 export default function Home() {
   const { data: session } = useSession();
