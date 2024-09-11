@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/hover-card";
 import { type PositionLoggerNode } from "./types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
 export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
   const displayedAvatars = data.constributors.contributors.slice(0, 5);
@@ -40,22 +41,34 @@ export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
             <HoverCard>
               <HoverCardTrigger asChild>
                 <a
-                  className="flex items-center z-10 justify-center w-8 h-8 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800"
+                  className="flex items-center z-[1000] justify-center w-8 h-8 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800"
                   href="#"
                 >
                   +{data.constributors.contributors.length - 5}
                 </a>
               </HoverCardTrigger>
               <HoverCardContent
-                className="w-fit bg-black p-1 text-gray-200 rounded-lg text-xs border-zinc-600"
+                className="w-fit bg-black p-1  text-gray-200 rounded-lg text-xs border-zinc-600"
                 side="right"
                 sideOffset={15}
+                avoidCollisions
               >
-                <ScrollArea className="w-32 h-36 max-h-60 bg-black px-2 py-1  ">
+                <h2 className="text-center">Frens</h2>
+                <ScrollArea className="w-36 h-36 max-h-60 bg-black px-2 py-1  ">
                   <div className="flex flex-col space-y-2 p-2">
                     {data.constributors.contributors.map((avatar, i) => (
-                      <div key={i} className="underline">
-                        {avatar.login}
+                      <div key={i} className="flex items-center space-x-2">
+                        <Avatar className="w-8 h-8  rounded-full dark:border-gray-800">
+                          <AvatarImage src={avatar.avatarUrl} alt="@shadcn" />
+                          <AvatarFallback>{avatar.alias}</AvatarFallback>
+                        </Avatar>
+                        <Link
+                          className="underline"
+                          href={avatar.url}
+                          target="_blank"
+                        >
+                          {avatar.login}
+                        </Link>
                       </div>
                     ))}
                   </div>

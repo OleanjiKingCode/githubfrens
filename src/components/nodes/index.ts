@@ -23,17 +23,16 @@ export const getNodes = ({
     const offset = (contributors.length - 1) / 2;
     return (i - offset) * spacing;
   });
+  const possibleYPositions = [290, 410, 500, 350, 450];
+  let lastPos: number = 0;
 
-  const getRandomNumber = (min: number, max: number, gap: number) => {
-    let randomNum;
-    do {
-      randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    } while (randomNum - min < gap);
-
-    return randomNum;
+  const getNextPos = () => {
+    let nextVal = lastPos;
+    lastPos === 4 ? (lastPos = 0) : lastPos++;
+    return possibleYPositions[nextVal];
   };
   for (let index = 0; index < contributors.length; index++) {
-    let yPos = getRandomNumber(50, 400, 100);
+    let yPos = getNextPos();
     data.push({
       id: `${index + 2}`,
       type: "position-logger",
@@ -56,7 +55,6 @@ export const getNodes = ({
       position: { x: 0, y: 1 },
       data: {
         label: user.name,
-        fixedY: 1,
         url: user.avatar_url,
         bio: user.bio,
         friendsCount: user.gitfrens,

@@ -35,7 +35,6 @@ export type PositionLoggerNode = Node<
 export type GitAvatarNode = Node<
   {
     label: string;
-    fixedY: number;
     url: string;
     bio: string;
     friendsCount: number;
