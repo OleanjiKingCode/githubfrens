@@ -15,6 +15,7 @@ import { AppNode } from "@/components/nodes/types";
 import { gitfrenDefinitions, loadingMessages } from "@/utils/descriptionData";
 import { SignIn } from "@/components/SignIn";
 import { Frens } from "@/components/Frens";
+import { PiCoffeeBold } from "react-icons/pi";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -160,8 +161,8 @@ export default function Home() {
       {!session ? (
         <SignIn definition={definition} />
       ) : loading ? (
-        <div className="w-full h-full flex flex-col items-center justify-center py-10 backdrop-blur-lg rounded-lg shadow-xl">
-          <FaSpinner className="w-16 h-16 animate-spin text-white" />
+        <div className="w-full h-full flex flex-col items-center justify-center max-md:px-10 py-10 backdrop-blur-lg rounded-lg shadow-xl">
+          <FaSpinner className="w-10 h-10 md:w-16 md:h-16 animate-spin text-white" />
           <span className="text-lg mt-4 text-center text-gray-500">
             {loadingMessages[loadingMessageIndex]}
           </span>
@@ -174,6 +175,28 @@ export default function Home() {
           onEdgesChange={onEdgesChange}
         />
       )}
+      <footer className="absolute bottom-4 flex flex-col md:flex-row items-center gap-6  text-white text-center">
+        <p>
+          Created by{" "}
+          <a
+            href="https://github.com/oleanjikingcode"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-yellow-400"
+          >
+            OleanjiKingCode
+          </a>
+        </p>
+        <a
+          href="https://buymeacoffee.com/oleanji"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white flex items-center hover:text-yellow-400"
+        >
+          Buy me a coffee
+          <PiCoffeeBold className="w-6 h-6 ml-2" />
+        </a>
+      </footer>
     </div>
   );
 }
