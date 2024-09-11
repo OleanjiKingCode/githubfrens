@@ -163,7 +163,7 @@ export default function Home() {
       ) : loading ? (
         <div className="w-full h-full flex flex-col items-center justify-center max-md:px-10 py-10 backdrop-blur-lg rounded-lg shadow-xl">
           <FaSpinner className="w-10 h-10 md:w-16 md:h-16 animate-spin text-white" />
-          <span className="text-lg mt-4 text-center text-gray-500">
+          <span className="text-lg mt-4 text-center text-white/90">
             {loadingMessages[loadingMessageIndex]}
           </span>
         </div>

@@ -13,7 +13,7 @@ export const SignIn = ({ definition }: { definition: string }) => {
         <span className="text-base md:text-lg text-center">{definition}</span>
       </div>
       <div className="flex flex-col items-center gap-6 mt-10">
-        <span className="text-base text-center text-gray-500">
+        <span className="text-base text-center text-white/90">
           Ready to dive into your open-source collaborations? Go meet your
           GitFrens!
         </span>
