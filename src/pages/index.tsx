@@ -18,6 +18,8 @@ export default function Home() {
   const { data: session } = useSession();
   const [allNodes, setAllNodes] = useState<AppNode[]>([]);
   const [allEdges, setAllEdges] = useState<Edge[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
 
   const gitfrenDefinitions = [
     "A Gitfren is a peer coder who collaborates with you to push the boundaries of open-source contributions.",
@@ -34,6 +36,19 @@ export default function Home() {
     "A Gitfren is a co-conspirator in the never-ending saga of bugs, features, and 'one last deploy'.",
     "Gitfren: Your ride-or-die in code, equally skilled in writing functions and delivering sarcastic code reviews.",
     "A Gitfren is the teammate who merges your code and your bad puns into the project, no questions asked.",
+  ];
+
+  const loadingMessages = [
+    "Fetching the dev who merged at 4 AM...",
+    "Looking for the Gitfren who always fixes typos...",
+    "Trying to find that last commit before the coffee break...",
+    "Checking for collaborators who left funny comments...",
+    "Waiting for the Gitfren who always pushes straight to main...",
+    "Searching for your Gitfren who loves code reviews...",
+    "Asking your Gitfren to fix that merge conflict...",
+    "Looking for the one who always forgets to write tests...",
+    "Checking who committed 100 times for a single bug fix...",
+    "Tracking the dev who submitted PRs at midnight...",
   ];
 
   const [definition, setDefinition] = useState("");
@@ -124,11 +139,19 @@ export default function Home() {
     const edges = initialEdges(result.length);
     setAllNodes(result);
     setAllEdges(edges);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchCollaborators();
   }, [session]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoadingMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const onEdgesChange: OnEdgesChange = useCallback(
     (changes) => setAllEdges((eds) => applyEdgeChanges(changes, eds)),
@@ -183,6 +206,13 @@ export default function Home() {
               Sign in with GitHub
             </button>
           </div>
+        </div>
+      ) : loading ? (
+        <div className="w-full h-full flex flex-col items-center justify-center py-10 backdrop-blur-lg rounded-lg shadow-xl">
+          <FaSpinner className="w-16 h-16 animate-spin text-gray-800" />
+          <span className="text-lg mt-4 text-center text-gray-500">
+            {loadingMessages[loadingMessageIndex]}
+          </span>
         </div>
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center py-10 backdrop-blur-lg rounded-lg shadow-xl">
