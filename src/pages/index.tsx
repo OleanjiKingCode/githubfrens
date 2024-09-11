@@ -124,8 +124,6 @@ export default function Home() {
     const edges = initialEdges(result.length);
     setAllNodes(result);
     setAllEdges(edges);
-    console.log(result);
-    console.log(filteredCollaboratorsData);
   };
 
   useEffect(() => {
@@ -142,9 +140,13 @@ export default function Home() {
       setAllNodes((nds) => {
         const parsedChanges = changes.map((change) => {
           if (change.position) {
-            const fixedY = nds.find((node) => change.id === node.id)?.data
-              .fixedY;
-            if (fixedY) {
+            const node = nds.find((node) => change.id === node.id);
+            const fixedY = node
+              ? "fixedY" in node.data
+                ? node.data.fixedY
+                : undefined
+              : undefined;
+            if (fixedY !== undefined) {
               change.position = { x: change.position.x, y: fixedY };
             }
           }
@@ -157,7 +159,7 @@ export default function Home() {
   );
   return (
     <div
-      className="flex flex-col items-center justify-center h-screen bg-cover bg-center"
+      className="flex flex-col items-center justify-center h-screen bg-cover bg-center "
       style={{ backgroundImage: "url('/github.webp')" }}
     >
       {!session ? (
@@ -183,12 +185,12 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="w-full h-full flex flex-col items-center justify-center py-10">
+        <div className="w-full h-full flex flex-col items-center justify-center py-10 backdrop-blur-lg rounded-lg shadow-xl">
           <div className="w-full flex justify-between items-center px-5">
             <div></div>
             <div className="flex items-center gap-2 text-2xl font-bold text-center">
               <FaGithub className="w-10 h-10" />
-              <span>Your Git Frens</span>
+              <span>Meet Your Git Frens</span>
             </div>
             <button
               className="bg-gray-800 text-white px-4 py-2 rounded"
@@ -208,7 +210,7 @@ export default function Home() {
             className="flex items-center justify-center"
             fitViewOptions={{
               padding: 0,
-              minZoom: 0.1,
+              minZoom: 1,
               maxZoom: 1,
             }}
           />
