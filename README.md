@@ -1,40 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+  ________  ___  _________  ___  ___  ___  ___  ________          ________ ________  _______   ________   ________      
+|\   ____\|\  \|\___   ___\\  \|\  \|\  \|\  \|\   __  \        |\  _____\\   __  \|\  ___ \ |\   ___  \|\   ____\     
+\ \  \___|\ \  \|___ \  \_\ \  \\\  \ \  \\\  \ \  \|\ /_       \ \  \__/\ \  \|\  \ \   __/|\ \  \\ \  \ \  \___|_    
+ \ \  \  __\ \  \   \ \  \ \ \   __  \ \  \\\  \ \   __  \       \ \   __\\ \   _  _\ \  \_|/_\ \  \\ \  \ \_____  \   
+  \ \  \|\  \ \  \   \ \  \ \ \  \ \  \ \  \\\  \ \  \|\  \       \ \  \_| \ \  \\  \\ \  \_|\ \ \  \\ \  \|____|\  \  
+   \ \_______\ \__\   \ \__\ \ \__\ \__\ \_______\ \_______\       \ \__\   \ \__\\ _\\ \_______\ \__\\ \__\____\_\  \ 
+    \|_______|\|__|    \|__|  \|__|\|__|\|_______|\|_______|        \|__|    \|__|\|__|\|_______|\|__| \|__|\_________\
+                                                                                                           \|_________|
+                                                                                                                       
+                                                                                                                       
 
-## Getting Started
+Welcome to **Github Frens** — an open-source project designed to connect developers in a fun and engaging way!. The goal is to show a visually appealing interface with interactive node features where users can view other gihub users and repos they have worked with or are currently working with.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication**: A simple sign-in system with github for users to log in and then view your fellow contrtibutors.
+  
+- **UI Nodes**: The main UI is composed of a **Node** component which shows the current user github pfp, and the the overview of the contributors when hovered on. the main pfp is connected to a web of toher nodes where each is a project that user has worked with
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Hover Interaction**: When hovering over the last avatar, a **HoverCard** appears, revealing all the contributors' names and link to their git page.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To run this project locally, follow these steps:
 
-## Learn More
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/OleanjiKingCode/githubfrens.git
+   ```
+2. Navigate to the project directory:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cd githubfrens
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   yarn 
+   ```
 
-## Deploy on Vercel
+4. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   yarn dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   Open your browser and visit http://localhost:3000 to see the project running locally.
+
+## Project Structure
+
+Here's a brief overview of the key components within the project:
+
+- **Frens.tsx**: This component is responsible for managing and displaying the list of contributors in the form of avatars, with interactive features like hover effects and scrollable areas.
+
+- **SignIn.tsx**: Handles user authentication, allowing new users to sign in view frens.
+
+- **GitNodes.tsx**: Manages the creation and representation of nodes for each contributor in the UI.
+
+- **ReposNode.tsx**: Logs and tracks the positioning of nodes and avatars in real time, ensuring that interactions like hovering and scrolling are smooth and responsive.
+
+- **types.ts**: Contains TypeScript types used across the project to ensure type safety and consistency in data handling.
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch for your feature or bug fix.
+3.  Make your changes and commit them.
+4.  Push your changes to your fork.
+5.  Create a pull request to the main repository.
+6.  Wait for a review to merge your changes.
+7.  If you have any questions or need assistance, feel free to reach out to the project maintainers.
+8.  Thank you for contributing to the project!
+9.  Happy coding!

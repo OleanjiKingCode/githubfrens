@@ -1,10 +1,10 @@
 import type { NodeTypes } from "@xyflow/react";
-import { PositionLoggerNode } from "./PositionLoggerNode";
+import { ReposNode } from "./ReposNode";
 import { AppNode, AuthenticatedUser, Contributors } from "./types";
 import { GitAvatarNode } from "./GitNodes";
 
 export const nodeTypes = {
-  "position-logger": PositionLoggerNode,
+  "repos-node": ReposNode,
   "git-avatar": GitAvatarNode,
   // Add any of your custom nodes here!
 } satisfies NodeTypes;
@@ -35,7 +35,7 @@ export const getNodes = ({
     let yPos = getNextPos();
     data.push({
       id: `${index + 2}`,
-      type: "position-logger",
+      type: "repos-node",
       position: {
         x: xPositions[index],
         y: yPos,

@@ -30,8 +30,8 @@ export function GitAvatarNode({ data }: NodeProps<GitAvatarNode>) {
         </div>
 
         <Avatar className="rounded-full w-[98px] h-[98px] border border-gray-400 bg-cover bg-center absolute top-0 transform transition-all duration-300">
-          <AvatarImage src={url} alt="User Avatar" />
-          <AvatarFallback>{`${label[0]}${label[1]}`}</AvatarFallback>
+          <AvatarImage src={url} alt="User Avatar" className="bg-white" />
+          <AvatarFallback className="text-[#2a2a2a]">{`${label[0]}${label[1]}`}</AvatarFallback>
         </Avatar>
       </div>
     </div>

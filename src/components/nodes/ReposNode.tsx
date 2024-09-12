@@ -5,11 +5,11 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { type PositionLoggerNode } from "./types";
+import { type ReposNode } from "./types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 
-export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
+export function ReposNode({ data }: NodeProps<ReposNode>) {
   const displayedAvatars = data.constributors.contributors.slice(0, 5);
   return (
     <div>
@@ -35,10 +35,16 @@ export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
           {displayedAvatars.map((avatar, index) => (
             <Avatar
               key={index}
-              className="w-8 h-8 border-2 border-white rounded-full dark:border-gray-800"
+              className="w-8 h-8 border-2 border-gray-300 rounded-full dark:border-gray-800"
             >
-              <AvatarImage src={avatar.avatarUrl} alt="@shadcn" />
-              <AvatarFallback>{avatar.alias}</AvatarFallback>
+              <AvatarImage
+                src={avatar.avatarUrl}
+                alt="@shadcn"
+                className="bg-white"
+              />
+              <AvatarFallback className="text-[#2a2a2a]">
+                {avatar.alias}
+              </AvatarFallback>
             </Avatar>
           ))}
           {data.constributors.contributors.length > 5 && (
@@ -63,8 +69,14 @@ export function PositionLoggerNode({ data }: NodeProps<PositionLoggerNode>) {
                     {data.constributors.contributors.map((avatar, i) => (
                       <div key={i} className="flex items-center space-x-2">
                         <Avatar className="w-8 h-8  rounded-full dark:border-gray-800">
-                          <AvatarImage src={avatar.avatarUrl} alt="@shadcn" />
-                          <AvatarFallback>{avatar.alias}</AvatarFallback>
+                          <AvatarImage
+                            src={avatar.avatarUrl}
+                            alt="@shadcn"
+                            className="bg-white"
+                          />
+                          <AvatarFallback className="text-[#2a2a2a]">
+                            {avatar.alias}
+                          </AvatarFallback>
                         </Avatar>
                         <Link
                           className="underline"

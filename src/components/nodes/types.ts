@@ -24,13 +24,13 @@ export interface Contributors {
   daysAgo: number;
 }
 
-export type PositionLoggerNode = Node<
+export type ReposNode = Node<
   {
     label: string;
     fixedY: number;
     constributors: Contributors;
   },
-  "position-logger"
+  "repos-node"
 >;
 export type GitAvatarNode = Node<
   {
@@ -43,4 +43,4 @@ export type GitAvatarNode = Node<
   "git-avatar"
 >;
 
-export type AppNode = BuiltInNode | PositionLoggerNode | GitAvatarNode;
+export type AppNode = BuiltInNode | ReposNode | GitAvatarNode;
