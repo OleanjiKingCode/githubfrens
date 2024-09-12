@@ -1,3 +1,4 @@
+```
 
   /$$$$$$  /$$$$$$ /$$$$$$$$ /$$   /$$ /$$   /$$ /$$$$$$$        /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$   /$$  /$$$$$$ 
  /$$__  $$|_  $$_/|__  $$__/| $$  | $$| $$  | $$| $$__  $$      | $$_____/| $$__  $$| $$_____/| $$$ | $$ /$$__  $$
@@ -8,9 +9,9 @@
 |  $$$$$$/ /$$$$$$   | $$   | $$  | $$|  $$$$$$/| $$$$$$$/      | $$      | $$  | $$| $$$$$$$$| $$ \  $$|  $$$$$$/
  \______/ |______/   |__/   |__/  |__/ \______/ |_______/       |__/      |__/  |__/|________/|__/  \__/ \______/ 
                                                                                                                   
-                                                                                                                                                                                                                 
-                                                                                                                       
-                                                                                                                       
+                                                                                                                  
+                                                                                                                  
+```
 
 Welcome to **Github Frens** — an open-source project designed to connect developers in a fun and engaging way!. The goal is to show a visually appealing interface with interactive node features where users can view other gihub users and repos they have worked with or are currently working with.
 
