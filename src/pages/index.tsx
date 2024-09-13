@@ -17,6 +17,7 @@ import { SignIn } from "@/components/SignIn";
 import { Frens } from "@/components/Frens";
 import { PiCoffeeBold } from "react-icons/pi";
 
+
 export default function Home() {
   const { data: session } = useSession();
   const [allNodes, setAllNodes] = useState<AppNode[]>([]);
