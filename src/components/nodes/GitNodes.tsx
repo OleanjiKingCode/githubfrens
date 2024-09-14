@@ -25,7 +25,7 @@ export function GitAvatarNode({ data }: NodeProps<GitAvatarNode>) {
           )}
           <div className="flex items-center justify-center w-full font-semibold gap-5 mt-3 px-5 mx-5 text-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <span className="text-zinc-500 ">{friendsCount} GitFrens</span>
-            <span className="text-zinc-500 ">{projectsCount} OSS Projects</span>
+            <span className="text-zinc-500 ">{projectsCount} Contibuted Projects</span>
           </div>
         </div>
 
